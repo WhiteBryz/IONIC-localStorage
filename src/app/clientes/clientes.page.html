@@ -1,13 +1,77 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>clientes</ion-title>
+  <ion-toolbar color="dark">
+    <ion-title>
+      Lista de Clientes
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" padding="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">clientes</ion-title>
+      <ion-title size="large">Lista simple</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-item>
+    <ion-label position="stacked">Nombre</ion-label>
+    <ion-input [(ngModel)]="txtNombre" placeholder="Ingrese nombre del cliente" autofocus="true">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <!-- <ion-label position="stacked">Direcció</ion-label> -->
+    <ion-input [(ngModel)]="txtDireccion" label="Dirección" labelPlacement="floating" placeholder="Ingrese dirección"
+      color="medium">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <!-- <ion-label position="stacked">Teléfono</ion-label> -->
+    <ion-input [(ngModel)]="txtTelefono" label="Teléfono" labelPlacement="floating" type="tel"
+      placeholder="000-000-0000" color="medium">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <!-- <ion-label position="stacked">Correo</ion-label> -->
+    <ion-input [(ngModel)]="txtCorreo" label="Correo" labelPlacement="floating" type="email"
+      placeholder="email@domain.com" color="medium">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <!-- <ion-label position="stacked">URL de foto del Cliente</ion-label> -->
+    <ion-input [(ngModel)]="txtUrlImagen" label="URL de Foto" labelPlacement="floating" type="url"
+      placeholder="Ingrese URL de la imagen del cliente" color="medium">
+    </ion-input>
+  </ion-item>
+
+  <ion-button expand="block" fill="outline" shape="round" color="primary" (click)="Agregar()">
+    💾 Agregar
+  </ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let cliente of clientes; let i=index">
+      <ion-card color="light">
+        <img alt="{{cliente.nombre}}" src="{{cliente.urlImagen}}" />
+        <ion-card-header>
+          <ion-card-title>{{cliente.nombre}}</ion-card-title>
+          <ion-card-subtitle>Dirección: {{cliente.direccion}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          <p>Teléfono: {{cliente.telefono}}</p>
+          <p>Correo: {{cliente.correo}}</p>
+        </ion-card-content>
+
+        <ion-button fill="outline" shape="round" (click)="Editar(i)">
+          ✍️ Editar
+        </ion-button>
+        <ion-button fill="outline" shape="round" (click)="Borrar(i)">
+          ❌ Eliminar
+        </ion-button>
+      </ion-card>
+    </ion-item>
+  </ion-list>
 </ion-content>

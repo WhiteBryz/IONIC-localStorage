@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="dark">
     <ion-title>
-      Lista de personas
+      Lista de productos
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,41 +14,44 @@
   </ion-header>
 
   <ion-item>
-    <ion-label position="stacked">Nombre</ion-label>
-    <ion-input [(ngModel)]="txtNombre"></ion-input>
+    <ion-label position="stacked">Nombre del producto</ion-label>
+    <ion-input [(ngModel)]="txtNombre" placeholder="Ingrese nombre de producto" autofocus="true">
+    </ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Descripcion</ion-label>
-    <ion-input [(ngModel)]="txtDescripcion"></ion-input>
+    <ion-input [(ngModel)]="txtDescripcion" placeholder="Ingrese descripción del producto"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Cantidad</ion-label>
-    <ion-input [(ngModel)]="txtCantidad"></ion-input>
+    <ion-input [(ngModel)]="txtCantidad" type="number" placeholder="0000"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Precio de Costo</ion-label>
-    <ion-input [(ngModel)]="txtPrecioCosto"></ion-input>
+    <ion-input [(ngModel)]="txtPrecioCosto" placeholder="$0.00"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Precio de Venta</ion-label>
-    <ion-input [(ngModel)]="txtPrecioVenta"></ion-input>
+    <ion-input [(ngModel)]="txtPrecioVenta" placeholder="$0.00"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="stacked">URL de imagen de producto</ion-label>
-    <ion-input [(ngModel)]="txtUrlImagen"></ion-input>
+    <ion-label position="stacked">URL de imagen del producto</ion-label>
+    <ion-input [(ngModel)]="txtUrlImagen" type="url" placeholder="Ingrese URL de la imágen del producto"></ion-input>
   </ion-item>
 
 
-  <ion-button expand="block" color="primary" (click)="Agregar()">Agregar</ion-button>
+  <ion-button expand="block" fill="outline" shape="round" color="primary" (click)="Agregar()">
+    💾 Agregar
+  </ion-button>
 
   <ion-list>
     <ion-item *ngFor="let producto of productos; let i=index">
-      <ion-card>
+      <ion-card color="light">
         <img alt="{{producto.nombre}}" src="{{producto.urlImagen}}" />
         <ion-card-header>
           <ion-card-title>{{producto.nombre}}</ion-card-title>
@@ -61,8 +64,12 @@
           <p>Descripcion: {{producto.descripcion}}</p>
         </ion-card-content>
 
-        <ion-button fill="clear" (click)="Editar(i)">Editar</ion-button>
-        <ion-button fill="clear" (click)="Borrar(i)">Eliminar</ion-button>
+        <ion-button fill="outline" (click)="Editar(i)">
+          ✍️ Editar
+        </ion-button>
+        <ion-button fill="outline" (click)="Borrar(i)">
+          ❌ Eliminar
+        </ion-button>
       </ion-card>
     </ion-item>
   </ion-list>

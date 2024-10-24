@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
 export class HomePage {
   txtNombre: string = "";
   txtDescripcion: string = "";
-  txtCantidad: string = "";
+  txtCantidad: number = 0;
   txtPrecioCosto: string = "";
   txtPrecioVenta: string = "";
   txtUrlImagen: string = "";
@@ -18,7 +18,7 @@ export class HomePage {
   productos: {
     nombre: string,
     descripcion: string,
-    cantidad: string,
+    cantidad: number,
     precioCosto: string,
     precioVenta: string,
     urlImagen: string
@@ -26,37 +26,11 @@ export class HomePage {
 
   constructor() {
 
-    // Cargar productos
+    // Cargar productos al iniciar
     let productosLocal = localStorage.getItem("productos")
     if (productosLocal) {
       this.productos = JSON.parse(productosLocal);
     }
-  }
-
-  Borrar(i: number) {
-    if (confirm("¿Deseas eliminar este producto?")) {
-      this.productos.splice(i, 1);
-      localStorage.setItem("productos", JSON.stringify(this.productos));
-    }
-  }
-
-  BorrarSinPreguntar(i: number) {
-    this.productos.splice(i, 1);
-    localStorage.setItem("productos", JSON.stringify(this.productos));
-  }
-
-  Editar(i: number) {
-    let producto = this.productos[i];
-
-    this.txtNombre = producto.nombre;
-    this.txtDescripcion = producto.descripcion;
-    this.txtCantidad = producto.cantidad;
-    this.txtPrecioCosto = producto.precioCosto;
-    this.txtPrecioVenta = producto.precioVenta;
-    this.txtUrlImagen = producto.urlImagen;
-
-    this.BorrarSinPreguntar(i);
-
   }
 
   Agregar() {
@@ -78,10 +52,36 @@ export class HomePage {
       // Eliminar inputs
       this.txtNombre = "";
       this.txtDescripcion = "";
-      this.txtCantidad = "";
+      this.txtCantidad = 0;
       this.txtPrecioCosto = "";
       this.txtPrecioVenta = "";
       this.txtUrlImagen = "";
     }
+  }
+
+  Editar(i: number) {
+    let producto = this.productos[i];
+
+    this.txtNombre = producto.nombre;
+    this.txtDescripcion = producto.descripcion;
+    this.txtCantidad = producto.cantidad;
+    this.txtPrecioCosto = producto.precioCosto;
+    this.txtPrecioVenta = producto.precioVenta;
+    this.txtUrlImagen = producto.urlImagen;
+
+    this._BorrarSinPreguntar(i);
+
+  }
+
+  Borrar(i: number) {
+    if (confirm("¿Deseas eliminar este producto?")) {
+      this.productos.splice(i, 1);
+      localStorage.setItem("productos", JSON.stringify(this.productos));
+    }
+  }
+
+  _BorrarSinPreguntar(i: number) {
+    this.productos.splice(i, 1);
+    localStorage.setItem("productos", JSON.stringify(this.productos));
   }
 }
