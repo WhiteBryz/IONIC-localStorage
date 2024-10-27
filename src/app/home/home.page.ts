@@ -16,6 +16,7 @@ export class HomePage {
   txtUrlImagen: string = "";
 
   productos: {
+    id: number,
     nombre: string,
     descripcion: string,
     cantidad: number,
@@ -38,6 +39,7 @@ export class HomePage {
     if (!!this.txtNombre && !!this.txtDescripcion && !!this.txtCantidad && !!this.txtPrecioCosto && !!this.txtPrecioVenta && this.txtUrlImagen) {
       // Agregar los productos a la lista de productos
       this.productos.push({
+        id: Date.now(),
         nombre: this.txtNombre,
         descripcion: this.txtDescripcion,
         cantidad: this.txtCantidad,

@@ -1,0 +1,58 @@
+<ion-header color="dark">
+  <ion-toolbar>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title><b>Regístrate</b></ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <!-- Formulario de registro -->
+      <form (submit)="register()">
+        <!-- Campo de nombre del usuario -->
+        <ion-item>
+          <ion-label position="floating">Nombre completo</ion-label>
+          <ion-input type="text" [(ngModel)]="txtFullName" name="txtFullName" required></ion-input>
+        </ion-item>
+
+        <!-- Campo de nombre de usuario -->
+        <ion-item>
+          <ion-label position="floating">Usuario</ion-label>
+          <ion-input type="text" [(ngModel)]="txtUserName" name="txtUserName" required></ion-input>
+        </ion-item>
+
+        <!-- Campo de contraseña -->
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password" [(ngModel)]="txtPassword" name="txtPassword" required></ion-input>
+        </ion-item>
+
+        <!-- Campo de nombre de la tienda -->
+        <ion-item>
+          <ion-label position="floating">Nombre de la tienda</ion-label>
+          <ion-input type="text" [(ngModel)]="txtStoreName" name="txtStoreName" required></ion-input>
+        </ion-item>
+
+        <!-- Campo de URL de la foto de la tienda -->
+        <ion-item>
+          <ion-label position="floating">URL de la foto de la tienda</ion-label>
+          <ion-input type="url" [(ngModel)]="txtUrlStore" name="txtUrlStore"></ion-input>
+        </ion-item>
+
+        <!-- Botón para registrarse -->
+        <ion-button expand="block" type="submit">Registrar</ion-button>
+      </form>
+
+      <!-- Enlace para volver al login -->
+      <div class="ion-text-center">
+        <ion-text>
+          ¿Ya tienes cuenta? <a href="/login">Inicia sesión aquí</a>
+        </ion-text>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

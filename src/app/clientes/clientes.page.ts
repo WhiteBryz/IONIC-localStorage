@@ -14,6 +14,7 @@ export class ClientesPage implements OnInit {
   txtUrlImagen: string = "";
 
   clientes: {
+    id: number,
     nombre: string,
     direccion: string,
     telefono: string,
@@ -32,6 +33,7 @@ export class ClientesPage implements OnInit {
   Agregar() {
     if (!!this.txtNombre && !!this.txtDireccion && !!this.txtCorreo && !!this.txtTelefono && !!this.txtUrlImagen) {
       this.clientes.push({
+        id: Date.now(),
         nombre: this.txtNombre,
         direccion: this.txtDireccion,
         telefono: this.txtTelefono,
