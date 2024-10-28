@@ -37,7 +37,7 @@ export class RegistrarPage implements OnInit {
         this.usuarios.push({
           id: Date.now(),
           fullName: this.txtFullName,
-          userName: this.txtUserName,
+          userName: this.txtUserName.toLowerCase(),
           password: this.txtPassword,
           storeName: this.txtStoreName,
           urlStore: this.txtUrlStore
@@ -60,7 +60,7 @@ export class RegistrarPage implements OnInit {
     this.navCtrl.navigateBack("login");
   }
   ngOnInit() {
-    return;
+    throw new Error('Method not implemented.');
   }
 
 }
