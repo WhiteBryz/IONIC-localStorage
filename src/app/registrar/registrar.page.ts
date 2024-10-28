@@ -22,7 +22,7 @@ export class RegistrarPage implements OnInit {
     urlStore: string
   }[] = [];
 
-  constructor(public navContrl: NavController) {
+  constructor(public navCtrl: NavController) {
     let usuariosLocal = localStorage.getItem("usuarios");
 
     if (usuariosLocal) {
@@ -32,30 +32,32 @@ export class RegistrarPage implements OnInit {
 
   register() {
     if (!!this.txtFullName && !!this.txtUserName && !!this.txtPassword && !!this.txtStoreName && !!this.txtUrlStore) {
-      this.usuarios.push({
-        id: Date.now(),
-        fullName: this.txtFullName,
-        userName: this.txtUserName,
-        password: this.txtPassword,
-        storeName: this.txtStoreName,
-        urlStore: this.txtUrlStore
-      })
+      // Validamos que no exista el usuario
+      if (!this.usuarios.find((e) => e.userName == this.txtUserName)) {
+        this.usuarios.push({
+          id: Date.now(),
+          fullName: this.txtFullName,
+          userName: this.txtUserName,
+          password: this.txtPassword,
+          storeName: this.txtStoreName,
+          urlStore: this.txtUrlStore
+        })
 
-      localStorage.setItem("usuarios", JSON.stringify(this.usuarios));
+        localStorage.setItem("usuarios", JSON.stringify(this.usuarios));
 
-      this.txtFullName = "";
-      this.txtUserName = "";
-      this.txtPassword = "";
-      this.txtStoreName = "";
-      this.txtUrlStore = "";
+        this.txtFullName = "";
+        this.txtUserName = "";
+        this.txtPassword = "";
+        this.txtStoreName = "";
+        this.txtUrlStore = "";
 
-      this.navigateToLoginPage();
-
+        this.navigateToLoginPage();
+      }
     }
   }
 
   navigateToLoginPage() {
-    this.navContrl.navigateBack("login");
+    this.navCtrl.navigateBack("login");
   }
   ngOnInit() {
     return;
