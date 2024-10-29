@@ -21,21 +21,37 @@ export class LoginPage implements OnInit {
     urlStore: string
   }[] = [];
 
-  constructor(public navCtrl: NavController) { }
+  constructor(public navCtrl: NavController) {
+    const savedUserName = localStorage.getItem("savedUser");
+    if (savedUserName) {
+      const user = JSON.parse(savedUserName);
+      this.txtUserName = user.userName;
+      this.txtPassword = user.password;
+    }
+  }
 
   login() {
     const user = this.usuarios.find((e) => e.userName == this.txtUserName.toLowerCase())
 
     if (!!user) {
       if (user.password === this.txtPassword) {
+        if (this.cbRememberMe) {
+          localStorage.setItem("savedUser", JSON.stringify(user));
+        }
+        // Almacenar datos del usuario local
+        localStorage.setItem("usuarioActual", JSON.stringify(user));
         this.navigateToHomePage();
       }
+    } else {
+      alert("Usuario o contraseña inválidos.")
     }
   }
 
   showingPassword() {
     this.showPassword = !this.showPassword;
   }
+
+
 
   navigateToHomePage() {
     this.navCtrl.navigateBack("home");

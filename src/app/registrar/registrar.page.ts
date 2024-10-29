@@ -52,6 +52,8 @@ export class RegistrarPage implements OnInit {
         this.txtUrlStore = "";
 
         this.navigateToLoginPage();
+      } else {
+        alert("El usuario ya existe")
       }
     }
   }

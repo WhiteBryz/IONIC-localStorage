@@ -9,29 +9,30 @@ import { Component, OnInit } from '@angular/core';
 
 export class HomePage implements OnInit {
 
-  usuarios: {
+  usuario: {
     id: number,
     fullName: string,
     userName: string,
     password: string,
     storeName: string,
     urlStore: string
-  }[] = [];
-
-  txtNombre = "";
-  txtUsuario = "";
-  txtContrasena = "";
-  txtNombreTienda = "";
-  txtUrlTienda = "";
+  } = {
+      id: 0,
+      fullName: "",
+      userName: "",
+      password: "",
+      storeName: "",
+      urlStore: ""
+    };
 
   constructor() {
 
 
   }
   ngOnInit(): void {
-    let usuariosLocal = localStorage.getItem("usuarios");
-    if (usuariosLocal) {
-      this.usuarios = JSON.parse(usuariosLocal)
+    let usuarioActual = localStorage.getItem("usuarioActual");
+    if (usuarioActual) {
+      this.usuario = JSON.parse(usuarioActual);
     }
   }
 }

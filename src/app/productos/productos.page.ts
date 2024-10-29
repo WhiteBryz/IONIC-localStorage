@@ -85,6 +85,7 @@ export class ProductosPage implements OnInit {
     localStorage.setItem("productos", JSON.stringify(this.productos));
   }
   ngOnInit() {
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
+    return;
   }
 }

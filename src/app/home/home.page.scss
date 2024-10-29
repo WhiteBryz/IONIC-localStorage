@@ -36,3 +36,22 @@ ion-card {
 ion-button {
   --padding: 5px;
 }
+
+ion-toolbar {
+  --padding: 5px;
+  --height: 100px;
+  --marigin: 0;
+  color: dark;
+}
+
+ion-item {
+  --padding: 5px;
+}
+
+ion-avatar {
+  margin-right: 20px;
+}
+
+ion-item ion-label {
+  font-size: large;
+}
