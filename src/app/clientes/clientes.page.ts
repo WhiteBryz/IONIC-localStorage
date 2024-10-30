@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ClientesPage implements OnInit {
+  txtId: string = "";
   txtNombre: string = "";
   txtDireccion: string = "";
   txtTelefono: string = "";
@@ -22,6 +23,8 @@ export class ClientesPage implements OnInit {
     urlImagen: string
   }[] = [];
 
+  isEditing: boolean = false;
+
   constructor() {
     // Cargar clientes al iniciar
     let clientesLocal = localStorage.getItem("clientes");
@@ -30,7 +33,7 @@ export class ClientesPage implements OnInit {
     }
   }
 
-  Agregar() {
+  btnAgregar() {
     if (!!this.txtNombre && !!this.txtDireccion && !!this.txtCorreo && !!this.txtTelefono && !!this.txtUrlImagen) {
       this.clientes.push({
         id: Date.now(),
@@ -48,22 +51,43 @@ export class ClientesPage implements OnInit {
     }
   }
 
+  btnEditar() {
+    let index = this.clientes.findIndex((e) => e.id.toString() == this.txtId)
+    console.log(index);
+    if (index >= 0) {
+      this.clientes[index].nombre = this.txtNombre;
+      this.clientes[index].direccion = this.txtDireccion;
+      this.clientes[index].telefono = this.txtTelefono;
+      this.clientes[index].correo = this.txtCorreo;
+      this.clientes[index].urlImagen = this.txtUrlImagen;
+
+      localStorage.setItem("clientes", JSON.stringify(this.clientes))
+
+      this.RestaurarInputs();
+
+      this.isEditing = false;
+    }
+  }
+
+  btnCancelar() {
+    this.RestaurarInputs();
+    this.isEditing = false;
+  }
+
   Editar(i: number) {
     let cliente = this.clientes[i];
 
     // Asignar valores a los inputs
+    this.txtId = cliente.id.toString();
     this.txtNombre = cliente.nombre;
     this.txtDireccion = cliente.direccion;
     this.txtTelefono = cliente.telefono;
     this.txtCorreo = cliente.correo;
     this.txtUrlImagen = cliente.urlImagen;
 
-    this._BorrarSinPreguntar(i);
-  }
+    this.isEditing = true;
 
-  _BorrarSinPreguntar(i: number) {
-    this.clientes.splice(i, 1);
-    localStorage.setItem("clientes", JSON.stringify(this.clientes));
+    // this._BorrarSinPreguntar(i);
   }
 
   Borrar(i: number) {
@@ -79,6 +103,7 @@ export class ClientesPage implements OnInit {
 
   RestaurarInputs() {
     // Restaurar inputs
+    this.txtId = "";
     this.txtNombre = "";
     this.txtDireccion = "";
     this.txtTelefono = "";

@@ -13,6 +13,11 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-item *ngIf="false" disabled="true">
+    <ion-label position="stacked">Id</ion-label>
+    <ion-input [(ngModel)]="txtId" disabled="true">
+    </ion-input>
+  </ion-item>
   <ion-item>
     <ion-label position="stacked">Nombre</ion-label>
     <ion-input [(ngModel)]="txtNombre" placeholder="Ingrese nombre del cliente" autofocus="true">
@@ -47,9 +52,25 @@
     </ion-input>
   </ion-item>
 
-  <ion-button expand="block" fill="outline" shape="round" color="primary" (click)="Agregar()">
+  <ion-button *ngIf="!isEditing" expand="block" fill="outline" shape="round" color="primary" (click)="btnAgregar()">
     💾 Agregar
   </ion-button>
+
+  <!-- Contenedor de botones en modo edición -->
+  <ion-grid *ngIf="isEditing">
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="block" fill="outline" shape="round" color="primary" (click)="btnEditar()">
+          ✅ Confirmar cambios
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" fill="outline" shape="round" color="primary" (click)="btnCancelar()">
+          ❌ Cancelar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <ion-list>
     <ion-item *ngFor="let cliente of clientes; let i=index">
