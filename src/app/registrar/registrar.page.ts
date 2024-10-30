@@ -55,6 +55,8 @@ export class RegistrarPage implements OnInit {
       } else {
         alert("El usuario ya existe")
       }
+    } else {
+      alert("Faltan datos por llenar");
     }
   }
 

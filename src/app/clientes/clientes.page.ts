@@ -48,24 +48,30 @@ export class ClientesPage implements OnInit {
 
       // Restaurar inputs
       this.RestaurarInputs();
+    } else {
+      alert("Faltan datos por llenar");
     }
   }
 
   btnEditar() {
-    let index = this.clientes.findIndex((e) => e.id.toString() == this.txtId)
-    console.log(index);
-    if (index >= 0) {
-      this.clientes[index].nombre = this.txtNombre;
-      this.clientes[index].direccion = this.txtDireccion;
-      this.clientes[index].telefono = this.txtTelefono;
-      this.clientes[index].correo = this.txtCorreo;
-      this.clientes[index].urlImagen = this.txtUrlImagen;
+    if (!!this.txtNombre && !!this.txtDireccion && !!this.txtCorreo && !!this.txtTelefono && !!this.txtUrlImagen) {
+      let index = this.clientes.findIndex((e) => e.id.toString() == this.txtId)
 
-      localStorage.setItem("clientes", JSON.stringify(this.clientes))
+      if (index >= 0) {
+        this.clientes[index].nombre = this.txtNombre;
+        this.clientes[index].direccion = this.txtDireccion;
+        this.clientes[index].telefono = this.txtTelefono;
+        this.clientes[index].correo = this.txtCorreo;
+        this.clientes[index].urlImagen = this.txtUrlImagen;
 
-      this.RestaurarInputs();
+        localStorage.setItem("clientes", JSON.stringify(this.clientes))
 
-      this.isEditing = false;
+        this.RestaurarInputs();
+
+        this.isEditing = false;
+      }
+    } else {
+      alert("¡Faltan datos por llenar!")
     }
   }
 

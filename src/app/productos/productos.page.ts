@@ -53,6 +53,8 @@ export class ProductosPage implements OnInit {
 
       this.RestaurarInputs();
 
+    } else {
+      alert("Faltan datos por llenar");
     }
   }
 
