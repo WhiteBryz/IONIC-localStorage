@@ -26,32 +26,58 @@
   text-decoration: none;
 }
 
-ion-card {
-  width: 80% !important;
-  margin: 20px !important;
-  padding: 10px;
-  border-radius: 10px;
+.profile-image-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
-ion-button {
-  --padding: 5px;
+.store-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-ion-toolbar {
-  --padding: 5px;
-  --height: 100px;
-  --marigin: 0;
-  color: dark;
+.info-container {
+  padding: 8px;
 }
 
-ion-item {
-  --padding: 5px;
+.info-item {
+  margin-bottom: 16px;
 }
 
-ion-avatar {
-  margin-right: 20px;
+.label-text {
+  display: block;
+  color: var(--ion-color-medium);
+  font-size: 0.9em;
+  margin-bottom: 4px;
 }
 
-ion-item ion-label {
-  font-size: large;
+.value-text {
+  display: block;
+  font-size: 1.1em;
+  color: var(--ion-color-dark);
+}
+
+.password-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--ion-color-medium);
+  border-radius: 4px;
+  padding-right: 8px;
+}
+
+.password-input {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+}
+
+.password-toggle {
+  font-size: 1.2em;
+  color: var(--ion-color-medium);
+  cursor: pointer;
 }

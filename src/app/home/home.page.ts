@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 
 export class HomePage implements OnInit {
 
+  showPassword = false;
+
   usuario: {
     id: number,
     fullName: string,
@@ -34,5 +36,9 @@ export class HomePage implements OnInit {
     if (usuarioActual) {
       this.usuario = JSON.parse(usuarioActual);
     }
+  }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
   }
 }

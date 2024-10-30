@@ -54,7 +54,7 @@ export class LoginPage implements OnInit {
 
 
   navigateToHomePage() {
-    this.navCtrl.navigateBack("home");
+    this.navCtrl.navigateRoot("menu-lateral/home");
   }
 
   ngOnInit() {

@@ -9,10 +9,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'clientes',
-    loadChildren: () => import('./clientes/clientes.module').then(m => m.ClientesPageModule)
-  },
-  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
@@ -21,16 +17,8 @@ const routes: Routes = [
     loadChildren: () => import('./registrar/registrar.module').then(m => m.RegistrarPageModule)
   },
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
-  },
-  {
-    path: 'productos',
-    loadChildren: () => import('./productos/productos.module').then(m => m.ProductosPageModule)
-  },
-  {
     path: 'menu-lateral',
-    loadChildren: () => import('./menu-lateral/menu-lateral.module').then( m => m.MenuLateralPageModule)
+    loadChildren: () => import('./menu-lateral/menu-lateral.module').then(m => m.MenuLateralPageModule)
   },
 ];
 

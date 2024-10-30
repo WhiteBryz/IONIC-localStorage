@@ -1,27 +1,63 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="dark">
-    <ion-item>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Página de Inicio
+    </ion-title>
+    <!-- <ion-item>
       <ion-avatar>
         <img alt="{{usuario.storeName}}" src="{{usuario.urlStore}}" />
       </ion-avatar>
       <ion-label>{{usuario.storeName}}</ion-label>
-    </ion-item>
+    </ion-item> -->
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" padding="true">
-  <ion-list>
-    <ion-item [routerLink]="['/productos']">
-      <ion-label>Productos</ion-label>
-    </ion-item>
-    <ion-item [routerLink]="['/clientes']">
-      <ion-label>Clientes</ion-label>
-    </ion-item>
-    <ion-item [routerLink]="['/ventas']">
-      <ion-label>Ventas</ion-label>
-    </ion-item>
-    <ion-item [routerLink]="['/reportes']">
-      <ion-label>Reportes</ion-label>
-    </ion-item>
-  </ion-list>
+<ion-content class="ion-padding">
+  <div class="profile-image-container">
+    <img [src]="usuario.urlStore" alt="Imagen de tienda" class="store-image">
+  </div>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Información del Usuario</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="info-container">
+        <div class="info-item">
+          <ion-label class="label-text">ID</ion-label>
+          <ion-text class="value-text">{{ usuario.id }}</ion-text>
+        </div>
+
+        <div class="info-item">
+          <ion-label class="label-text">Nombre de la Tienda</ion-label>
+          <ion-text class="value-text">{{ usuario.storeName }}</ion-text>
+        </div>
+
+        <div class="info-item">
+          <ion-label class="label-text">Nombre Completo</ion-label>
+          <ion-text class="value-text">{{ usuario.fullName }}</ion-text>
+        </div>
+
+        <div class="info-item">
+          <ion-label class="label-text">Nombre de Usuario</ion-label>
+          <ion-text class="value-text">{{ usuario.userName }}</ion-text>
+        </div>
+
+        <div class="info-item">
+          <ion-label class="label-text">Contraseña</ion-label>
+          <div class="password-container">
+            <ion-input [type]="showPassword ? 'text' : 'password'" [value]="usuario.password" readonly
+              class="password-input">
+            </ion-input>
+            <ion-icon [name]="showPassword ? 'eye-off' : 'eye'" (click)="togglePassword()" class="password-toggle">
+            </ion-icon>
+          </div>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
