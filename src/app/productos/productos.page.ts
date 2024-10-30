@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./productos.page.scss'],
 })
 export class ProductosPage implements OnInit {
-
+  txtId: string = "";
   txtNombre: string = "";
   txtDescripcion: string = "";
   txtCantidad: number = 0;
@@ -23,6 +23,8 @@ export class ProductosPage implements OnInit {
     precioVenta: string,
     urlImagen: string
   }[] = [];
+
+  isEditing: boolean = false;
 
   constructor() {
     // Cargar productos al iniciar
@@ -49,19 +51,38 @@ export class ProductosPage implements OnInit {
       // Cargar localStorage
       localStorage.setItem("productos", JSON.stringify(this.productos));
 
-      // Eliminar inputs
-      this.txtNombre = "";
-      this.txtDescripcion = "";
-      this.txtCantidad = 0;
-      this.txtPrecioCosto = "";
-      this.txtPrecioVenta = "";
-      this.txtUrlImagen = "";
+      this.RestaurarInputs();
+
     }
+  }
+
+  btnEditar() {
+    let index = this.productos.findIndex((e) => e.id.toString() == this.txtId)
+    console.log(index);
+    if (index >= 0) {
+      this.productos[index].nombre = this.txtNombre;
+      this.productos[index].descripcion = this.txtDescripcion;
+      this.productos[index].cantidad = this.txtCantidad;
+      this.productos[index].precioCosto = this.txtPrecioCosto;
+      this.productos[index].precioVenta = this.txtPrecioVenta;
+      this.productos[index].urlImagen = this.txtUrlImagen;
+
+      localStorage.setItem("productos", JSON.stringify(this.productos))
+
+      this.RestaurarInputs();
+
+      this.isEditing = false;
+    }
+  }
+
+  btnCancelar() {
+    this.RestaurarInputs();
+    this.isEditing = false;
   }
 
   Editar(i: number) {
     let producto = this.productos[i];
-
+    this.txtId = producto.id.toString();
     this.txtNombre = producto.nombre;
     this.txtDescripcion = producto.descripcion;
     this.txtCantidad = producto.cantidad;
@@ -69,23 +90,28 @@ export class ProductosPage implements OnInit {
     this.txtPrecioVenta = producto.precioVenta;
     this.txtUrlImagen = producto.urlImagen;
 
-    this._BorrarSinPreguntar(i);
+    this.isEditing = true;
 
   }
 
   Borrar(i: number) {
-    if (confirm("¿Deseas eliminar este producto?")) {
+    if (confirm("¿Deseas eliminar el producto: " + this.productos[i].nombre + "?")) {
       this.productos.splice(i, 1);
       localStorage.setItem("productos", JSON.stringify(this.productos));
     }
   }
 
-  _BorrarSinPreguntar(i: number) {
-    this.productos.splice(i, 1);
-    localStorage.setItem("productos", JSON.stringify(this.productos));
+  RestaurarInputs() {
+    // Eliminar inputs
+    this.txtId = "";
+    this.txtNombre = "";
+    this.txtDescripcion = "";
+    this.txtCantidad = 0;
+    this.txtPrecioCosto = "";
+    this.txtPrecioVenta = "";
+    this.txtUrlImagen = "";
   }
   ngOnInit() {
-    // throw new Error('Method not implemented.');
     return;
   }
 }

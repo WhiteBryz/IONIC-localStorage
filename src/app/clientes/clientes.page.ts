@@ -87,11 +87,10 @@ export class ClientesPage implements OnInit {
 
     this.isEditing = true;
 
-    // this._BorrarSinPreguntar(i);
   }
 
   Borrar(i: number) {
-    if (confirm("¿Deseas eliminar el producto: " + this.clientes[i].nombre)) {
+    if (confirm("¿Deseas eliminar el cliente: " + this.clientes[i].nombre + "?")) {
       this.clientes.splice(i, 1);
       localStorage.setItem("clientes", JSON.stringify(this.clientes));
     }
