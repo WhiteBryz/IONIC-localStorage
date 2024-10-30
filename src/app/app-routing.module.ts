@@ -28,6 +28,10 @@ const routes: Routes = [
     path: 'productos',
     loadChildren: () => import('./productos/productos.module').then(m => m.ProductosPageModule)
   },
+  {
+    path: 'menu-lateral',
+    loadChildren: () => import('./menu-lateral/menu-lateral.module').then( m => m.MenuLateralPageModule)
+  },
 ];
 
 @NgModule({
